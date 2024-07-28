@@ -9,11 +9,11 @@ body {
 
 .layout-container {
   margin: auto;
-  width: 50%;
+  width: 50%; 
   overflow: hidden;
   border: 1px solid #5C817B;
   padding: 1em;
-  max-height: 50%;
+  max-height: 80%; 
   display: flex;
   flex-direction: column;
 }
@@ -51,7 +51,7 @@ ul.reset {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0;
+  gap: 0; /* No gaps between items */
 }
 
 .reset li {
@@ -64,6 +64,11 @@ ul.reset {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s;
+}
+
+.reset li:hover {
+  transform: scale(1.05);
 }
 
 .reset li::before {
@@ -84,39 +89,88 @@ ul.reset {
 }
 
 .layout1 li, .layout2 li, .layout3 li {
-  height: 200px;
+  height: 200px; /* Consistent height across all layouts */
 }
 
 .layout2 li:nth-child(1), .layout2 li:nth-child(2), .layout2 li:nth-child(3) {
-  grid-column: span 3;
+  grid-column: span 3; /* Full width for the first three items */
 }
 
 .layout2 li:nth-child(4), .layout2 li:nth-child(5), .layout2 li:nth-child(6) {
-  grid-column: span 1;
+  grid-column: span 1; /* Normal width for the last three items */
 }
 
 .layout3 .grid {
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: auto auto;
+  grid-template-columns: repeat(6, 1fr); /* More columns for varied layout */
+  grid-template-rows: auto auto; /* Dynamically adjust row heights based on content */
 }
 
 .layout3 li {
-  height: 250px;
+  height: 250px; /* Allow the height to adjust based on content */
   overflow: hidden;
 }
 
 .layout3 li:nth-child(1), .layout3 li:nth-child(2) {
-  grid-column: span 2;
+  grid-column: span 2; /* First two images span two columns each */
 }
 
 .layout3 li:nth-child(3) {
-  grid-column: 5 / span 2;
+  grid-column: 5 / span 2; /* Third image spans two columns starting from the 5th column */
 }
 
 .layout3 li:nth-child(4) {
-  grid-column: 1 / span 6;
+  grid-column: 1 / span 6; /* Fourth image spans four columns */
 }
 
 .layout3 li:nth-child(5), .layout3 li:nth-child(6) {
-  grid-column: span 3;
+  grid-column: span 3; /* Fifth and sixth images span three columns each */
+}
+
+/* Lightbox Styles */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: white;
+  padding: 10px 0;
+  height: 150px;
 }

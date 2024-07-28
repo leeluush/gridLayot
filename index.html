@@ -26,31 +26,56 @@
             </ul>
         </div>
     </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="caption"></div>
+    </div>
+
     <script>
- function setLayout(layout) {
-  const layoutContainer = document.querySelector('.layout-container');
-  layoutContainer.className = `layout-container ${layout}`;
+        function setLayout(layout) {
+            const layoutContainer = document.querySelector('.layout-container');
+            layoutContainer.className = `layout-container ${layout}`;
 
-  const gallery = document.getElementById('gallery');
-  gallery.className = `reset grid ${layout}`;
+            const gallery = document.getElementById('gallery');
+            gallery.className = `reset grid ${layout}`;
 
-  const images = [
-    'https://picsum.photos/1000?random=1',
-    'https://picsum.photos/1000?random=2',
-    'https://picsum.photos/1000?random=3',
-    'https://picsum.photos/1000?random=4',
-    'https://picsum.photos/1000?random=5',
-    'https://picsum.photos/1000?random=6',
-  ];
+            const images = [
+                'https://picsum.photos/1000?random=1',
+                'https://picsum.photos/1000?random=2',
+                'https://picsum.photos/1000?random=3',
+                'https://picsum.photos/1000?random=4',
+                'https://picsum.photos/1000?random=5',
+                'https://picsum.photos/1000?random=6',
+            ];
 
-  gallery.querySelectorAll('li').forEach((li, index) => {
-    li.style.backgroundImage = `url(${images[index]})`;
-  });
-}
+            gallery.querySelectorAll('li').forEach((li, index) => {
+                li.style.backgroundImage = `url(${images[index]})`;
+                li.onclick = () => openLightbox(images[index], li.dataset.title);
+            });
+        }
 
-// Initial layout setup
-setLayout('layout1');
+        function openLightbox(src, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const captionText = document.getElementById('caption');
 
+            lightbox.style.display = 'block';
+            lightboxImg.src = src;
+            captionText.innerHTML = caption;
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+        }
+
+        document.querySelector('.close').onclick = closeLightbox;
+
+        // Initial layout setup
+        setLayout('layout1');
     </script>
 </body>
 </html>
