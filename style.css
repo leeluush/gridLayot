@@ -1,0 +1,122 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 1em;
+  font-family: 'Lato', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+.layout-container {
+  margin: auto;
+  width: 50%;
+  overflow: hidden;
+  border: 1px solid #5C817B;
+  padding: 1em;
+  max-height: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+  color: #5C817B;
+  font-weight: 300;
+  font-size: 2.5rem;
+  margin-bottom: 1em;
+}
+
+nav {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+button {
+  background-color: #5C817B;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  margin: 0 0.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #4a675e;
+}
+
+ul.reset {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.reset li {
+  border: 1px solid #5C817B;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset li::before {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Layout Specifics */
+.layout1 .grid, .layout2 .grid, .layout3 .grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.layout1 li, .layout2 li, .layout3 li {
+  height: 200px;
+}
+
+.layout2 li:nth-child(1), .layout2 li:nth-child(2), .layout2 li:nth-child(3) {
+  grid-column: span 3;
+}
+
+.layout2 li:nth-child(4), .layout2 li:nth-child(5), .layout2 li:nth-child(6) {
+  grid-column: span 1;
+}
+
+.layout3 .grid {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto auto;
+}
+
+.layout3 li {
+  height: 250px;
+  overflow: hidden;
+}
+
+.layout3 li:nth-child(1), .layout3 li:nth-child(2) {
+  grid-column: span 2;
+}
+
+.layout3 li:nth-child(3) {
+  grid-column: 5 / span 2;
+}
+
+.layout3 li:nth-child(4) {
+  grid-column: 1 / span 6;
+}
+
+.layout3 li:nth-child(5), .layout3 li:nth-child(6) {
+  grid-column: span 3;
+}

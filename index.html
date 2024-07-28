@@ -1,134 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-
-ul.reset {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-         
-        body {
-            margin: 0;
-            padding: 1em;
-            font-family: sans-serif;
-
-        }
-
-
-        .full-height {
-      display: flex;
-      flex-direction: column;
-      height: calc(100vh - 2em);
-    }
-
-
-        .full-height-fill {
-            flex-grow: 1;
-        }
-
-
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-        
-            gap: 1em;
-        }
-
-
-
-
-        .grid > * {
-            border-radius: 0.5em;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-            text-indent: -100vw;
-        }
-
-
-
-
-        li:nth-child(1) {
-            background-image: url(https://picsum.photos/350/578)
-        }
-
-        li:nth-child(2) {
-            background-image: url(https://picsum.photos/826/426)
-        }
-
-        li:nth-child(3) {
-            background-image: url(https://picsum.photos/627/540)
-        }
-
-        li:nth-child(4) {
-            background-image: url(https://picsum.photos/917/879)
-        }
-
-        li:nth-child(5) {
-            background-image: url(https://picsum.photos/626/361)
-        }
-
-        li:nth-child(6) {
-            background-image: url(https://picsum.photos/626/361)
-        }
-
- 
-
-
-
-        .grid :nth-child(4) {
-            grid-row: span 2;
-        }
-
-        .grid :nth-child(2),
-        .grid :nth-child(3) {
-            grid-column: span 2;
-        }
-        @media (min-width: 50em) {
-      li:nth-child(1) { background-image: url(https://picsum.photos/1000?random=1) }
-      li:nth-child(2) { background-image: url(https://picsum.photos/1600/400?random=1) }
-      li:nth-child(3) { background-image: url(https://picsum.photos/1600/400?random=2) }
-      li:nth-child(4) { background-image: url(https://picsum.photos/1000?random=2) }
-      li:nth-child(5) { background-image: url(https://picsum.photos/1000?random=3) }
-      li:nth-child(6) { background-image: url(https://picsum.photos/1000?random=4) }
-    }
-
-
-
-
-
-    </style>
+    <title>My Gallery</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>
-
-
- <div class="full-height">
-    <h1>My Gallery</h1>
-    <ul class="reset grid full-height-fill">
-      <li>A random image</li>
-      <li>A random image</li>
-      <li>A random image</li>
-      <li>A random image</li>
-      <li>A random image</li>
-      <li>A random image</li>
-    </ul>
-  </div>
-
-
-</div>
+    <div class="container">
+        <h1>My Gallery</h1>
+        <nav>
+            <button onclick="setLayout('layout1')">Layout 1</button>
+            <button onclick="setLayout('layout2')">Layout 2</button>
+            <button onclick="setLayout('layout3')">Layout 3</button>
+        </nav>
+        <div class="layout-container layout1">
+            <ul class="reset grid" id="gallery">
+                <li data-title="A random image 1"></li>
+                <li data-title="A random image 2"></li>
+                <li data-title="A random image 3"></li>
+                <li data-title="A random image 4"></li>
+                <li data-title="A random image 5"></li>
+                <li data-title="A random image 6"></li>
+            </ul>
+        </div>
     </div>
-</body>
+    <script>
+ function setLayout(layout) {
+  const layoutContainer = document.querySelector('.layout-container');
+  layoutContainer.className = `layout-container ${layout}`;
 
+  const gallery = document.getElementById('gallery');
+  gallery.className = `reset grid ${layout}`;
+
+  const images = [
+    'https://picsum.photos/1000?random=1',
+    'https://picsum.photos/1000?random=2',
+    'https://picsum.photos/1000?random=3',
+    'https://picsum.photos/1000?random=4',
+    'https://picsum.photos/1000?random=5',
+    'https://picsum.photos/1000?random=6',
+  ];
+
+  gallery.querySelectorAll('li').forEach((li, index) => {
+    li.style.backgroundImage = `url(${images[index]})`;
+  });
+}
+
+// Initial layout setup
+setLayout('layout1');
+
+    </script>
+</body>
 </html>
